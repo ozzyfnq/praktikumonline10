@@ -35,7 +35,7 @@ public abstract class WordRoomDatabase : RoomDatabase(){
             //Add sample words
             var word = Word("Hello")
             wordDao.insert(word)
-            word = Word("Hello!")
+            word = Word("World!")
             wordDao.insert(word)
         }
     }
@@ -56,7 +56,8 @@ public abstract class WordRoomDatabase : RoomDatabase(){
                     context.applicationContext,
                     WordRoomDatabase::class.java,
                     "word_database"
-                ).build()
+                )   .addCallback(WordDataBaseCallback(scope))
+                    .build()
                 INSTANCE = instance
                 return instance
             }
